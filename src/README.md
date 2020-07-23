@@ -21,3 +21,7 @@ Example:
 
 ![cost-not-updated](./cost-not-updated.png)
 ![costs](./costs.png)
+
+### MISC
+
+* When creating the incoming webhook, I have uploaded an ICON for the app. You can also do the same, by uploading your own icon. I have used the icon `cost-explorer.png` present in this directory.

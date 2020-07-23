@@ -19,8 +19,8 @@
 
 Example: 
 
-![costs](./images/costs.png)
-![cost-not-updated](./images/cost-not-updated.png)
+![costs](../images/costs.png)
+![cost-not-updated](../images/cost-not-updated.png)
 
 ### MISC
 

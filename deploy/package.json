@@ -1,8 +1,8 @@
 {
-  "name": "aws-daily-costs-slack",
+  "name": "aws-daily-costs-in-slack",
   "version": "0.1.0",
   "bin": {
-    "aws-daily-costs-slack": "bin/aws-daily-costs-slack.js"
+    "aws-daily-costs-in-slack": "bin/aws-daily-costs-in-slack.js"
   },
   "scripts": {
     "build": "tsc",

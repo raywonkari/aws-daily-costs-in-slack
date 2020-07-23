@@ -4,10 +4,10 @@
 
 ```
 ├── bin
-│   └── aws-daily-costs-slack.ts
+│   └── aws-daily-costs-in-slack.ts
 ├── cdk.json
 ├── lib
-│   └── aws-daily-costs-slack-stack.ts
+│   └── aws-daily-costs-in-slack-stack.ts
 ├── package-lock.json
 ├── package.json
 └── tsconfig.json

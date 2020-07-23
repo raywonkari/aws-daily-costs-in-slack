@@ -1,0 +1,27 @@
+{
+  "name": "aws-daily-costs-slack",
+  "version": "0.1.0",
+  "bin": {
+    "aws-daily-costs-slack": "bin/aws-daily-costs-slack.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "1.54.0",
+    "@types/node": "10.17.5",
+    "aws-cdk": "1.54.0",
+    "ts-node": "^8.1.0",
+    "typescript": "~3.7.2"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-events": "^1.54.0",
+    "@aws-cdk/aws-events-targets": "^1.54.0",
+    "@aws-cdk/aws-iam": "^1.54.0",
+    "@aws-cdk/aws-lambda": "^1.54.0",
+    "@aws-cdk/core": "1.54.0",
+    "source-map-support": "^0.5.16"
+  }
+}

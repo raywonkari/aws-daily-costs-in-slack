@@ -1,0 +1,22 @@
+{
+  "name": "aws-daily-costs-in-slack",
+  "version": "1.0.0",
+  "description": "Receive daily unblended costs of AWS accounts in an organization, to slack using Cost Explorer API & a lambda function.",
+  "main": "lambda.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raywonkari/aws-daily-costs-in-slack.git"
+  },
+  "author": "Raywon Kari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raywonkari/aws-daily-costs-in-slack/issues"
+  },
+  "homepage": "https://github.com/raywonkari/aws-daily-costs-in-slack#readme",
+  "dependencies": {
+    "aws-sdk": "^2.718.0",
+    "https": "^1.0.0",
+    "moment": "^2.27.0"
+  }
+}

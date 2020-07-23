@@ -1,0 +1,13 @@
+{
+    "aws": {
+        "apiVersion": "2017-10-25",
+        "region": "us-east-1"
+    },
+    "accounts": {
+        "account-name-one": "000000000000",
+        "account-name-two": "111111111111"
+    },
+    "slack": {
+        "webhook": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYYYYYYYYYYYYYYYYYY"
+    }
+}

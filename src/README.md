@@ -10,7 +10,7 @@
 ### appconfig.json 
 
 * This file consists of the config values used by the lambda function.
-* This file needs to be updated with the slack webhook url, along with the list of AWS accounts you want to receive daily costs.
+* This file needs to be updated with the slack webhook url, along with the list of AWS accounts you want to receive daily costs, just append more account names and IDs in the config.
 
 ### lambda.js
 

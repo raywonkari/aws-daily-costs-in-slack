@@ -5,6 +5,12 @@
 * The lambda function needs to be deployed in the master account, with necessary IAM permissions to access cost explorer APIs.
 * This project uses slack's incoming webhook URL, to send the cost info. Refer slack's [doc](https://api.slack.com/messaging/webhooks) for more info.
 
+## Prerequisites
+* Update `src/appconfig.json` with your slack channel's incoming webhook URL.
+* Update `src/appconfig.json` with your list of Account IDs to fetch the daily unblended cost estimates.
+* Update `deploy/bin/aws-daily-costs-slack.ts` with your master account ID, where you will deploy this lambda function.
+* Ability to deploy the code as a lambda function in the master account.
+
 ## Directory Structure
 
 ```
@@ -28,12 +34,6 @@
 
 * `src` consists of the source code of this project. 
 * `deploy` consists of the deployment source code, using AWS CDK.
-
-## Prerequisites
-* Update `src/appconfig.json` with your slack channel's incoming webhook URL.
-* Update `src/appconfig.json` with your list of Account IDs to fetch the daily unblended cost estimates.
-* Update `deploy/bin/aws-daily-costs-slack.ts` with your master account ID, where you will deploy this lambda function.
-* Ability to deploy the code as a lambda function in the master account.
 
 ## Deploy
 * I am using AWS CDK, to the deploy the code as a lambda function and configure it with cron settings.

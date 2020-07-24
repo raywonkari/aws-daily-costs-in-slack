@@ -38,6 +38,7 @@
 
 ## Deploy
 * I am using AWS CDK, to the deploy the code as a lambda function and configure it with cron settings.
+* After finishing the prerequisites, simply run `cdk deploy` from the deploy directory.
 * See `deploy/` directory for info on the deployment.
 
 ## TODO

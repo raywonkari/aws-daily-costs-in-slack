@@ -38,8 +38,24 @@
 
 ## Deploy
 * I am using AWS CDK, to the deploy the code as a lambda function and configure it with cron settings.
-* After finishing the prerequisites, simply run `cdk deploy` from the deploy directory.
-* See `deploy/` directory for info on the deployment.
+* If you would like to use CDK as well, then:
+
+```shell
+git clone https://github.com/raywonkari/aws-daily-costs-in-slack.git
+cd aws-daily-costs-in-slack/
+# update the config. See Prerequisites section.
+
+cd src/
+npm install
+
+cd ../deploy/
+npm install
+tsc
+cdk deploy
+```
+
+* See `deploy/` directory for some more info on the deployment.
+* Alternately, you could use any deployment method, just make sure to deploy the code in the master account.
 
 ## TODO
 1. Dollar is used as default currency. See `line 103` in `./src/lambda.js`. Make it dynamic, so we don't need to hard code the currency.

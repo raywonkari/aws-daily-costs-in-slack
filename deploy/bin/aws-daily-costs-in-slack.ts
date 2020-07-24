@@ -6,7 +6,7 @@ import { AwsDailyCostsInSlackStack } from '../lib/aws-daily-costs-in-slack-stack
 const app = new cdk.App();
 new AwsDailyCostsInSlackStack(app, 'AwsDailyCostsInSlackStack', {
     env: {
-        region: 'eu-west-1',
+        region: 'xxxxxxxx',
         account: 'XXXXXXXXXX'
     }
 });

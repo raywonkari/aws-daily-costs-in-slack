@@ -9,7 +9,7 @@
 ## Prerequisites
 * Update `src/appconfig.json` with your slack channel's incoming webhook URL.
 * Update `src/appconfig.json` with your list of Account IDs to fetch the daily unblended cost estimates.
-* Update `deploy/bin/aws-daily-costs-in-slack.ts` with your master account ID, where you will deploy this lambda function.
+* Update `deploy/bin/aws-daily-costs-in-slack.ts` with your master account ID and the region you wish to deploy.
 * Ability to deploy the code as a lambda function in the master account.
 
 ## Directory Structure

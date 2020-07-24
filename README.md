@@ -1,7 +1,7 @@
 # aws-daily-costs-in-slack
 
 ## Overview
-* This project will send daily AWS cost estimates of all AWS accounts in an Organization. Ideally it should be deployed as a lambda function and configured with a daily cron job. The source code is in `src/` directory.
+* This project will send daily AWS cost estimates of AWS accounts in an Organization. Ideally it should be deployed as a lambda function and configured with a daily cron job. The source code is in `src/` directory.
 * The lambda function needs to be deployed in the master account, with necessary IAM permissions to access cost explorer APIs.
 * This project uses slack's incoming webhook URL, to send the cost info. Refer slack's [doc](https://api.slack.com/messaging/webhooks) for more info.
 * Each Cost Explorer API request costs $0.01.
@@ -42,7 +42,7 @@
 * See `deploy/` directory for info on the deployment.
 
 ## TODO
-1. Dollar is used as default currency. See `line 99`. Make it dynamic, so we don't need to hard code the currency.
+1. Dollar is used as default currency. See `line 103` in `./src/lambda.js`. Make it dynamic, so we don't need to hard code the currency.
 2. We are computing `UNBLENDED` costs, and it is hard coded. If possible make it dynamic, so we could set the cost type in the appconfig, so that the filter and further processing is done automatically.
 3. Currently one list of accounts and one slack message is sent using one webhook URL. Make it more robust, so we could set different account groupings in appconfig, and different slack webhooks.
 

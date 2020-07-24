@@ -4,6 +4,7 @@
 * This project will send daily AWS cost estimates of all AWS accounts in an Organization. Ideally it should be deployed as a lambda function and configured with a daily cron job. The source code is in `src/` directory.
 * The lambda function needs to be deployed in the master account, with necessary IAM permissions to access cost explorer APIs.
 * This project uses slack's incoming webhook URL, to send the cost info. Refer slack's [doc](https://api.slack.com/messaging/webhooks) for more info.
+* Each Cost Explorer API request costs $0.01.
 
 ## Prerequisites
 * Update `src/appconfig.json` with your slack channel's incoming webhook URL.

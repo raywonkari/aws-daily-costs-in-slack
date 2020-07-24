@@ -24,4 +24,4 @@ Example:
 
 ### MISC
 
-* When creating the incoming webhook, I have uploaded an ICON for the app. You can also do the same, by uploading your own icon. I have used the icon `./images/cost-explorer.png` present in this directory.
+* When creating the incoming webhook, I have uploaded an ICON for the app. You can also do the same, by uploading your own icon. I have used the icon `../images/cost-explorer.png` present in this directory.

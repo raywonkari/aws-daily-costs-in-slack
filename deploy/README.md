@@ -16,7 +16,7 @@
 ### lib/
 
 * Here is where, our actual infrastructure as code is defined.
-* We are basically creating a lambda function by fetching the code from `src/` directory, and configuring it with an inline IAM policy which has Get and Describe permissions, and also configuring a cronjob, which would execute the lambda function everyday at 7.00 AM UTC.
+* We are basically creating a lambda function by fetching the code from `../src/` directory, and configuring it with an inline IAM policy which has Get and Describe permissions, and also configuring a cronjob, which would execute the lambda function everyday at 7.00 AM UTC.
 
 ### bin/
 

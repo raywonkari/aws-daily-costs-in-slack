@@ -8,13 +8,14 @@ var costexplorer = new AWS.CostExplorer(appconfig.aws);
 
 // Define start and end dates
 // I am computing daily costs so start is yesterday, and end is today
+// This will compute yesterday's cost
 var date = new Date();
 var StartDate = moment(date).add(-1, 'd').format('YYYY-MM-DD');
 var EndDate = moment(date).format('YYYY-MM-DD');
 var StartDateReadable = moment(date).add(-1, 'd').format('MMMM Do, YYYY');
 
 // If you pass an account number, it will respond with the name
-// If you do not pass an account number, it will respond with the filter
+// If you do not pass an account number, it will respond with the config
 function getConfig(accountNumber) {
 
     let accountName;
@@ -62,21 +63,24 @@ function getConfig(accountNumber) {
     
 }
 
-// Mail function which will be triggered by the lambda function
+// Main will be triggered by the AWS lambda service.
 exports.main = function(event, context) {
 
     costexplorer.getCostAndUsage(getConfig(), function(err, data) {
         if (err) {
-            console.log("Failed to send stats to slack");
+            console.log("Failed to get data from cost explorer");
             console.log(err);
         } else {
 
             // usually the first 2 or 3 days of the month, AWS will not update the cost.
             // So we capture the response, and if it is empty or undefined, send a warning.
+
             if (data.ResultsByTime[0].Groups === undefined || data.ResultsByTime[0].Groups == 0) {
                 sendSlackMessage([{"title": "WARN", "value": "Cost not updated yet"}]) 
             } else {
+                // compute the slack message fields
                 let slackFields = data.ResultsByTime[0].Groups.map( (value) => {
+                    // value.Keys[0] has the account ID and value.Metrics.UnblendedCost.Amount has the cost associated
                     return prepareSlackMessage(value.Keys[0], Math.ceil(value.Metrics.UnblendedCost.Amount))
                 })
                 sendSlackMessage(slackFields)

@@ -55,7 +55,7 @@ cdk deploy
 ```
 
 * See `deploy/` directory for some more info on the deployment.
-* Alternately, you could use any deployment method, just make sure to deploy the code in the master account.
+* Alternately, you could use any deployment method, just make sure to install dependencies in `./src/` by running `npm install` & deploy the `./src/` directory in the master account, ideally as a lambda function.
 
 ## TODO
 1. Dollar is used as default currency. See `line 103` in `./src/lambda.js`. Make it dynamic, so we don't need to hard code the currency.

@@ -28,7 +28,7 @@
 │   └── tsconfig.json
 └── src
     ├── appconfig.json
-    ├── aws-daily-costs-in-slack.js
+    ├── lambda.js
     ├── package-lock.json
     └── package.json
 ```

@@ -9,7 +9,7 @@
 ## Prerequisites
 
 ### Config:
-* Update `src/appconfig.json` with your AWS account IDs and slack channel's incoming webhook URL. You can either specify one group of accounts and one slack webhook, or multiple group of accounts and slack webhooks.
+* Update `src/appconfig.json` with your AWS account IDs and slack channel's incoming webhook URL. You can either specify one group of accounts and one slack webhook, or multiple group of accounts and slack webhooks. WHY THIS GROUPING: This is helpful if we have multiple teams and multiple AWS accounts for each team, so we could send a set of accounts cost to a team's slack channel and so on.. If we do not need to send it to more than one channel, we simply have only one group.
 * Update `deploy/bin/aws-daily-costs-in-slack.ts` with your master account ID and the region you wish to deploy.
 
 #### Example Configurations:

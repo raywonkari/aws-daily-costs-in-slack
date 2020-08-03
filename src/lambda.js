@@ -62,7 +62,7 @@ function sendCostToSlack(apiConfig, awsAccounts, webhook) {
             // So we capture the response, and if it is empty or undefined, send a warning.
 
             if (data.ResultsByTime[0].Groups === undefined || data.ResultsByTime[0].Groups == 0) {
-                sendSlackMessage([{"title": "WARN", "value": "Cost not updated yet"}]) 
+                sendSlackMessage([{"title": "WARN", "value": "Cost not updated yet"}], webhook) 
             } else {
                 // compute the slack message fields
                 let slackFields = data.ResultsByTime[0].Groups.map( (value) => {

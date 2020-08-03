@@ -7,10 +7,61 @@
 * Each Cost Explorer API request costs $0.01.
 
 ## Prerequisites
-* Update `src/appconfig.json` with your slack channel's incoming webhook URL.
-* Update `src/appconfig.json` with your list of Account IDs to fetch the daily unblended cost estimates.
+
+### Config:
+* Update `src/appconfig.json` with your AWS account IDs and slack channel's incoming webhook URL. You can either specify one group of accounts and one slack webhook, or multiple group of accounts and slack webhooks.
 * Update `deploy/bin/aws-daily-costs-in-slack.ts` with your master account ID and the region you wish to deploy.
-* Ability to deploy the code as a lambda function in the master account.
+
+#### Example Configurations:
+
+```
+# One group
+{
+    "aws": {
+        "apiVersion": "2017-10-25",
+        "region": "us-east-1"
+    },
+    "values": [
+        {
+            "accounts": {
+                "account-name-one": "000000000000",
+                "account-name-two": "111111111111"
+            },
+            "slack": {
+                "webhook": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            }
+        }
+    ]
+}
+
+# Two groups
+{
+    "aws": {
+        "apiVersion": "2017-10-25",
+        "region": "us-east-1"
+    },
+    "values": [
+        {
+            "accounts": {
+                "account-name-one": "000000000000",
+                "account-name-two": "111111111111"
+            },
+            "slack": {
+                "webhook": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            }
+        },
+        {
+            "accounts": {
+                "account-name-three": "000000000000",
+                "account-name-four": "111111111111"
+            },
+            "slack": {
+                "webhook": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            }
+        }
+    ]
+}
+```
 
 ## Directory Structure
 
@@ -58,9 +109,8 @@ cdk deploy
 * Alternately, you could use any deployment method, just make sure to install dependencies in `./src/` by running `npm install` & deploy the `./src/` directory in the master account, ideally as a lambda function.
 
 ## TODO
-1. Dollar is used as default currency. See `line 103` in `./src/lambda.js`. Make it dynamic, so we don't need to hard code the currency.
+1. Dollar is used as default currency. See `line 89` in `./src/lambda.js`. Make it dynamic, so we don't need to hard code the currency.
 2. We are computing `UNBLENDED` costs, and it is hard coded. If possible make it dynamic, so we could set the cost type in the appconfig, so that the filter and further processing is done automatically.
-3. Currently one list of accounts and one slack message is sent using one webhook URL. Make it more robust, so we could set different account groupings in appconfig, and different slack webhooks.
 
 ## Blog
 

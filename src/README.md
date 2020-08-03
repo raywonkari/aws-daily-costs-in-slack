@@ -11,6 +11,7 @@
 
 * This file consists of the config values used by the lambda function.
 * This file needs to be updated with the slack webhook url, along with the list of AWS accounts you want to receive daily costs, just append more account names and IDs in the config.
+* You can specify multiple groups of accounts and slack webhooks, this is helpful if you want to relay cost info of accounts belonging to different teams into their respective slack channels.
 
 ### lambda.js
 

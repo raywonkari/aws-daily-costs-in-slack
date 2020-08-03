@@ -14,28 +14,18 @@ var StartDate = moment(date).add(-1, 'd').format('YYYY-MM-DD');
 var EndDate = moment(date).format('YYYY-MM-DD');
 var StartDateReadable = moment(date).add(-1, 'd').format('MMMM Do, YYYY');
 
-// If you pass an account number, it will respond with the name
-// If you do not pass an account number, it will respond with the config
-function getConfig(accountNumber) {
+// Main will be triggered by the AWS lambda service.
+exports.main = function(event, context) {
+    Object.entries(appconfig.values).forEach( ([_,value]) => {
 
-    let accountName;
-    accountList = []
-    
-    // Fetching all account names and numbers, and creating a list out of it.
-    // this list has two purposes:
-    // 1. The filter will contain account numbers as a list
-    // 2. The list also has account names, which we will transform into upper case, and use it in slack message
-    Object.entries(appconfig.accounts).forEach( ([key, value]) => {
-        if (value === accountNumber) {
-            accountName = key.toUpperCase()
-        }
-        accountList.push(value)
-    })
+        // create list of account IDs, which is used in the API call towards cost explorer
+        accountList = []
+        Object.entries(value.accounts).forEach( ([_, value]) => {
+            accountList.push(value)
+        })
 
-    // respond with the filter
-    if (! accountNumber) {
-
-        return {
+        // config used in the getCostAndUsage API call
+        apiConfig = {
             TimePeriod: {
                 End: EndDate,
                 Start: StartDate
@@ -55,18 +45,14 @@ function getConfig(accountNumber) {
                 }
             ]
         }
+        sendCostToSlack(apiConfig, value.accounts, value.slack.webhook)
 
-    } else {
-        // return the account name which will be used in slack message
-        return accountName
-    }
-    
+    })
 }
 
-// Main will be triggered by the AWS lambda service.
-exports.main = function(event, context) {
+function sendCostToSlack(apiConfig, awsAccounts, webhook) {
 
-    costexplorer.getCostAndUsage(getConfig(), function(err, data) {
+    costexplorer.getCostAndUsage(apiConfig, function(err, data) {
         if (err) {
             console.log("Failed to get data from cost explorer");
             console.log(err);
@@ -81,9 +67,9 @@ exports.main = function(event, context) {
                 // compute the slack message fields
                 let slackFields = data.ResultsByTime[0].Groups.map( (value) => {
                     // value.Keys[0] has the account ID and value.Metrics.UnblendedCost.Amount has the cost associated
-                    return prepareSlackMessage(value.Keys[0], Math.ceil(value.Metrics.UnblendedCost.Amount))
+                    return prepareSlackMessage(awsAccounts, value.Keys[0], Math.ceil(value.Metrics.UnblendedCost.Amount))
                 })
-                sendSlackMessage(slackFields)
+                sendSlackMessage(slackFields, webhook)
             }
 
         }
@@ -92,12 +78,12 @@ exports.main = function(event, context) {
 }
 
 // This will create an object which is used as slack "fields"
-function prepareSlackMessage(acc, cost) {
+function prepareSlackMessage(awsAccounts, acc, cost) {
     
     var fieldsObject = {};
 
     // Here we pass accountNumber, so we get an upper cased account name as response
-    let accountNameVisibleInSlack = getConfig(acc)
+    let accountNameVisibleInSlack = getKey(awsAccounts, acc)
     
     fieldsObject['title'] = accountNameVisibleInSlack
     fieldsObject['value'] = `$${cost}`
@@ -106,8 +92,13 @@ function prepareSlackMessage(acc, cost) {
     return fieldsObject;
 }
 
+function getKey(object, value) {
+    accountName = Object.keys(object).find(key => object[key] === value)
+    return accountName.toUpperCase()
+}
+
 // Sending slack message
-function sendSlackMessage(fields) {
+function sendSlackMessage(fields, webhook) {
 
     const messageBody = {
         "username": "AWS Bills", // This will appear as user name who posts the message
@@ -126,7 +117,7 @@ function sendSlackMessage(fields) {
             }
         }
 
-        const req = https.request(appconfig.slack.webhook, requestOptions, (res) => {
+        const req = https.request(webhook, requestOptions, (res) => {
             let response = '';
 
             res.on('data', (d) => {

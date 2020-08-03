@@ -3,11 +3,24 @@
         "apiVersion": "2017-10-25",
         "region": "us-east-1"
     },
-    "accounts": {
-        "account-name-one": "000000000000",
-        "account-name-two": "111111111111"
-    },
-    "slack": {
-        "webhook": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYYYYYYYYYYYYYYYYYY"
-    }
+    "values": [
+        {
+            "accounts": {
+                "account-name-one": "000000000000",
+                "account-name-two": "111111111111"
+            },
+            "slack": {
+                "webhook": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            }
+        },
+        {
+            "accounts": {
+                "account-name-three": "000000000000",
+                "account-name-four": "111111111111"
+            },
+            "slack": {
+                "webhook": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYYYYYYYYYYYYYYYYYY"
+            }
+        }
+    ]
 }

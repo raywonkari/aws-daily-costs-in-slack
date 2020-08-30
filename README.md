@@ -113,6 +113,7 @@ cdk deploy
 ## TODO
 1. Dollar is used as default currency. See `line 89` in `./src/lambda.js`. Make it dynamic, so we don't need to hard code the currency.
 2. We are computing `UNBLENDED` costs, and it is hard coded. If possible make it dynamic, so we could set the cost type in the appconfig, so that the filter and further processing is done automatically.
+3. Support pagination.
 
 ## Blog
 

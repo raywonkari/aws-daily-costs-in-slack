@@ -17,6 +17,6 @@
   "dependencies": {
     "aws-sdk": "^2.718.0",
     "https": "^1.0.0",
-    "moment": "^2.27.0"
+    "moment": "^2.29.4"
   }
 }
